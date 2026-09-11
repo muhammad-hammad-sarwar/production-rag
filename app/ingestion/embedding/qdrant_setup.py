@@ -1,15 +1,16 @@
 import os
 from qdrant_client import QdrantClient
 from qdrant_client.models import VectorParams, Distance
+from app.config import QDRANT_ENDPOINT, QDRANT_API_KEY
 
 EMBEDDING_DIM = 384
 COLLECTION_NAME = "embeddings"
 
 def get_qdrant_client() -> QdrantClient:
-    url = os.getenv("QDRANT_ENDPOINT")
+    url = QDRANT_ENDPOINT
     if not url:
-        raise RuntimeError("Missing QDRANT_URL env var")
-    return QdrantClient(url=url, api_key=os.getenv("QDRANT_API_KEY") or None)
+        raise RuntimeError("Missing QDRANT_ENDPOINT env var")
+    return QdrantClient(url=url, api_key=QDRANT_API_KEY or None)
 
 def ensure_collection(client: QdrantClient, collection_name: str = COLLECTION_NAME, dim: int = EMBEDDING_DIM):
     if client.collection_exists(collection_name):

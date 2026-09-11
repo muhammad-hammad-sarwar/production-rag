@@ -1,12 +1,13 @@
 # embedding/model.py
 from sentence_transformers import SentenceTransformer
+from app.config import HF_TOKEN
 
 _model = None
 
 def get_model():
     global _model
     if _model is None:
-        _model = SentenceTransformer("BAAI/bge-small-en-v1.5")  # 384-dim, strong for its size, runs on CPU
+        _model = SentenceTransformer("BAAI/bge-small-en-v1.5", token=HF_TOKEN)  # 384-dim, strong for its size, runs on CPU
     return _model
 
 def embed_texts(texts: list[str]) -> list[list[float]]:

@@ -1,8 +1,8 @@
 import json
 import logfire
 from pathlib import Path
-from dotenv import load_dotenv
-import os
+# from dotenv import load_dotenv
+from app.config import LOGFIRE_TOKEN
 
 from loaders.html import parse_html
 from loaders.office import parse_office
@@ -11,8 +11,8 @@ from loaders.text import parse_text
 from chunking.splitter import chunk_segments
 from embedding.qdrant_setup import get_qdrant_client, ensure_collection, COLLECTION_NAME
 
-load_dotenv()
-logfire.configure(token=os.getenv("LOGFIRE_TOKEN"), environment="development", service_name="enterprise-ingestion-service")
+# load_dotenv()
+logfire.configure(token=LOGFIRE_TOKEN, environment="development", service_name="enterprise-ingestion-service")
 
 SUPPORTED_EXTENSIONS = {".pptx", ".docx", ".txt", ".html", ".pdf"}
 CHECKPOINT_PATH = Path("embedded_ids.json")

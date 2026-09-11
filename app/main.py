@@ -1,11 +1,11 @@
-import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
+from app.config import LOGFIRE_TOKEN
 import logfire
 
-load_dotenv()
+# load_dotenv()
 
 logfire.configure(
-    token=os.getenv("LOGFIRE_TOKEN"),
+    token=LOGFIRE_TOKEN,
     environment="development"
 )
 
