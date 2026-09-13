@@ -25,9 +25,14 @@ def responder_node(state: AgentState) -> AgentState:
         else:
             context = _build_context(documents)
             system_prompt = (
-                "You are a professional Kubernetes and technical expret. You only have to answer queries that are related to kubernetes and networking. Otherwise ignore the context and say i am not sure or any answer that is professional to say no."
+                "You are a professional Kubernetes and technical expret. You only have to answer queries that are related to kubernetes and networking."
+                "If any query is not related to Kubernetes directly or indirectly, dont answer say: I am kubernetes assistant i cant help you with that."
+                "Otherwise ignore the context and say i am not sure or any answer that is professional to say no."
                 "Answer the user's question using ONLY the provided context. "
                 "If the context doesn't contain the answer, say so — don't invent one."
+                "Examples: 1. Tell me a joke? Say i cant"
+                "Examples: 2. How to increase creativity in LLM? Say i cant"
+                "Examples: 3. Write me a pytohn script that is a calculator? Say i cant. For your context: This is technical but not related to kubernetes."
             )
             user_content = f"Context:\n{context}\n\nQuestion: {state['current_query']}"
 

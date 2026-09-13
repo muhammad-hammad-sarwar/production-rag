@@ -41,7 +41,7 @@ def run_query(query: str, thread_id: str = "default") -> dict:
     with logfire.span("🚀 Agent run", query=query, thread_id=thread_id):
         result = app.invoke(
             {
-                "messages": [],  # LangGraph's checkpointer appends/persists this across turns on the same thread_id
+                "messages": [],
                 "current_query": query,
                 "plan": [],
                 "status": "starting",

@@ -6,8 +6,9 @@ def retriever_node(state: AgentState) -> AgentState:
     with logfire.span("🔍 Retriever node", query=state["current_query"]):
         results = search(
             query=state["current_query"],
-            top_k=25,
-            use_reranker=True,
+            top_k=15,
+            use_reranker=False,
+            # use_reranker=True,
             top_n=5,
         )
 
