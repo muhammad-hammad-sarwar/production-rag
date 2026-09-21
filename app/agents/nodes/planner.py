@@ -41,7 +41,6 @@ def planner_node(state: AgentState) -> AgentState:
             # this was a huge issue because i was not able to get conversational and each query was marked as technical
         )
         classification = response.choices[0].message.content.strip().lower()
-        logfire.info("Answer coming directly form model", answer=response.choices[0])
         query_type = "technical" if "technical" in classification else "conversational"
 
         logfire.info(f"Planner classified query as: {query_type}", query=state["current_query"])

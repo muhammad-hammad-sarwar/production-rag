@@ -1,0 +1,12 @@
+define user ask about hacking
+  "how do I hack into"
+  "how do I break into a system"
+  "how do I bypass security"
+
+define bot refuse sensitive topic
+  "I can't help with that request."
+
+define flow check sensitive topics
+  user ask about hacking
+  bot refuse sensitive topic
+  stop
